@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+
+    api:
+        container_name: example-api
+        build:
+            #context: example-api
+            dockerfile: Dockerfile
+        environment:
+            #20.TODO
+            #- PORT=8000
+            #DB_HOST: api_db
+            #Можно тупо захардкодить параметры:
+            DB_DATABASE: example
+            #DB_USERNAME: root
+            #DB_PASSWORD: root
+            #Но лучше я Буду брать эти параметры из .env файла
+            #DB_DATABASE: '${DB_DATABASE}'
+            #DB_USERNAME: '${DB_USERNAME}'
+            #DB_PASSWORD: '${DB_PASSWORD:-secret}'
+        #21.TODO Если удалить этот ^ports:^ как было в туториале, то Front поднимается, но запросы в Back не идут.
+        #command: 'php artisan serve --host=0.0.0.0'
+        ports:
+            - 8000:8000
+        volumes:
+            - .:/app
+            # Следующую строку взял из https://github.com/k90mirzaei/laravel9-docker/blob/master/docker-compose.yml
+            #- .docker/php/php.ini:/usr/local/etc/php/conf.d/local.ini

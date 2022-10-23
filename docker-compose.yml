@@ -41,3 +41,16 @@ services:
           - backend
       networks:
           app-network:
+
+    #2
+  artisan:
+      build:
+          context: .docker/php
+          dockerfile: dockerfile
+      container_name: artisan
+      volumes:
+          - ./:/var/www/html
+      working_dir: /var/www/html
+      entrypoint: ['/var/www/html/artisan']
+      networks:
+          app-network:

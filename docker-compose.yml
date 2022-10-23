@@ -29,3 +29,15 @@ services:
       - .docker/php/php.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       app-network:
+
+    #2
+  composer:
+      image: composer:latest
+      container_name: composer
+      volumes:
+          - ./:/var/www/html
+      working_dir: /var/www/html
+      depends_on:
+          - backend
+      networks:
+          app-network:
